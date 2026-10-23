@@ -311,7 +311,6 @@ window.AGW = (() => {
           <button type="button" class="icon-btn shop-burger" aria-label="Kategorie" aria-expanded="false">${icon.menu}</button>
           <a class="shop-logo" href="index.html" aria-label="AgroWil – strona główna">
             <img src="logo_agrowil.png" alt="AgroWil"/>
-            <span>sklep</span>
           </a>
           <form class="shop-search" action="sklep.html" role="search" autocomplete="off">
             <input type="search" name="q" placeholder="Szukaj po nazwie lub numerze katalogowym, np. RE504836" value="${esc(params.get('q') || '')}" aria-label="Szukaj produktów"/>
@@ -330,7 +329,7 @@ window.AGW = (() => {
             <a href="sklep.html?promo=1" class="cats__promo">Promocje</a>
             <span class="cats__sep" aria-hidden="true"></span>
             <a href="index.html#oferta" class="cats__info">Usługi</a>
-            <a href="index.html#fjd" class="cats__info">Nawigacje FJD</a>
+            <a href="agrowilfjdynamics.html" class="cats__info">Nawigacje FJD</a>
             <a href="index.html#kontakt" class="cats__info">Kontakt</a>
           </div>
         </nav>
@@ -342,6 +341,11 @@ window.AGW = (() => {
       const open = cats.classList.toggle('is-open');
       burger.setAttribute('aria-expanded', open);
     });
+
+    const header = document.querySelector('.shop-header');
+    const setHeaderHeight = () => document.documentElement.style.setProperty('--shop-header-h', `${header.offsetHeight}px`);
+    setHeaderHeight();
+    window.addEventListener('resize', setHeaderHeight);
 
     initSuggest();
     updateCounters();
