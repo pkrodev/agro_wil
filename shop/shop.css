@@ -99,7 +99,7 @@ body.no-scroll { overflow: hidden; }
 .shop-header { position: sticky; top: 0; z-index: 50; background: #fff; box-shadow: 0 2px 14px rgba(15, 36, 16, .08); }
 .shop-header__row { display: flex; align-items: center; gap: 1.2rem; padding: .55rem 0; }
 .shop-logo { display: flex; align-items: center; gap: .1rem; flex-shrink: 0; text-decoration: none !important; }
-.shop-logo img { height: 104px; width: auto; margin: -22px -16px; }
+.shop-logo img { height: 62px; width: auto; max-width: none; }
 .shop-burger { display: none; }
 
 .shop-search { position: relative; flex: 1; display: flex; }
@@ -514,7 +514,7 @@ body.no-scroll { overflow: hidden; }
   .shop-header__row { flex-wrap: wrap; gap: .5rem .7rem; }
   .shop-burger { display: inline-grid; order: 0; }
   .shop-logo { order: 1; margin-right: auto; }
-  .shop-logo img { height: 80px; margin: -16px -12px; }
+  .shop-logo img { height: 48px; }
   .shop-actions { order: 2; }
   .shop-search { order: 3; flex-basis: 100%; }
   .shop-search input { padding: .65rem .8rem; }
@@ -806,3 +806,9 @@ body.no-scroll { overflow: hidden; }
 /* karty FJD na stronie głównej to linki – zachowaj jasny tekst na ciemnym tle */
 .shop a.fjd-item { color: #f4f7f3 !important; text-decoration: none !important; }
 .shop a.fjd-item h3 { color: #fff; }
+
+/* Uwagi do zamówienia w koszyku (trafiają do zamówienia w Shopify) */
+.summary__note { display: flex; flex-direction: column; gap: .35rem; font-size: .84rem; font-weight: 600; }
+.summary__note textarea { padding: .55rem .7rem; border: 1px solid #cdd5c6; border-radius: 9px; font: inherit; font-weight: 400; font-size: .9rem; resize: vertical; }
+.summary__note textarea:focus { outline: none; border-color: var(--lime); box-shadow: 0 0 0 3px rgba(108, 173, 31, .18); }
+.summary [data-checkout-error] a { color: var(--sale) !important; text-decoration: underline; }

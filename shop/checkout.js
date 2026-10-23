@@ -2,7 +2,7 @@
 // UWAGA: wersja bez backendu – zamówienie zapisuje się w przeglądarce. Przed uruchomieniem sprzedaży
 // podłącz wysyłkę zamówienia (e-mail / API sklepu) i bramkę płatności w funkcji submitOrder().
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => window.AGW.ready.then(() => {
   const A = window.AGW;
   const { fmt, esc, byId, icon } = A;
   const root = document.getElementById('checkout');
@@ -23,6 +23,22 @@ document.addEventListener('DOMContentLoaded', () => {
     </ol>`;
 
   const items = A.cart.items();
+
+  // Sklep połączony z Shopify – dostawa, płatność i potwierdzenie odbywają się w kasie Shopify
+  if (window.AGW_SHOP?.enabled && items.length) {
+    root.innerHTML = `${steps(2)}<div class="empty"><h1>Przekierowujemy do bezpiecznej kasy…</h1>
+      <p data-msg>Za chwilę wybierzesz dostawę i płatność.</p></div>`;
+    let note = '';
+    try { note = localStorage.getItem('agw_cart_note') || ''; } catch (e) { /* brak zapisu */ }
+    window.AGW_SHOP.checkout(items, note)
+      .then((url) => { location.href = url; })
+      .catch((e) => {
+        root.querySelector('[data-msg]').innerHTML = `Nie udało się połączyć z kasą (${esc(e.message)}).
+          <a href="koszyk.html">Wróć do koszyka</a> albo zamów telefonicznie: <a href="tel:+48666605101">666 605 101</a>.`;
+      });
+    return;
+  }
+
   if (!items.length) {
     root.innerHTML = `${steps(2)}<div class="empty"><h1>Koszyk jest pusty</h1>
       <p>Dodaj produkty, aby złożyć zamówienie.</p><a class="btn btn--primary" href="sklep.html">Przejdź do sklepu</a></div>`;
@@ -184,4 +200,4 @@ document.addEventListener('DOMContentLoaded', () => {
         .flatMap((i) => A.boughtTogether(i.id, 3))
         .filter((p, i, arr) => arr.indexOf(p) === i && !order.items.some((x) => x.id === p.id)))}`;
   };
-});
+}));

@@ -310,7 +310,7 @@ window.AGW = (() => {
         <div class="wrap shop-header__row">
           <button type="button" class="icon-btn shop-burger" aria-label="Kategorie" aria-expanded="false">${icon.menu}</button>
           <a class="shop-logo" href="index.html" aria-label="AgroWil – strona główna">
-            <img src="logo_agrowil.png" alt="AgroWil"/>
+            <img src="img/logo-agrowil.png" alt="AgroWil" width="340" height="267"/>
           </a>
           <form class="shop-search" action="sklep.html" role="search" autocomplete="off">
             <input type="search" name="q" placeholder="Szukaj po nazwie lub numerze katalogowym, np. RE504836" value="${esc(params.get('q') || '')}" aria-label="Szukaj produktów"/>
@@ -585,16 +585,29 @@ window.AGW = (() => {
     window.addEventListener('storage', updateCounters);
   };
 
+  // Ceny i stany mogą przyjść z Shopify – strony renderują się po synchronizacji (albo po limicie czasu)
+  const ready = window.AGW_SHOP ? window.AGW_SHOP.ready : Promise.resolve();
+
   const init = () => {
     renderHeader();
     renderFooter();
     bindGlobal();
+    ready.then(updateCounters);
+
+    // Klient wrócił po opłaceniu zamówienia w kasie Shopify – wyczyść koszyk
+    window.AGW_SHOP?.checkPending()
+      .then((done) => {
+        if (!done) return;
+        cart.clear();
+        toast('Dziękujemy! Zamówienie zostało złożone – potwierdzenie przyjdzie mailem.');
+      })
+      .catch(() => { /* sprawdzimy przy następnej wizycie */ });
   };
 
   return {
     PRODUCTS, CATEGORIES, FREE_SHIPPING_FROM,
     fmt, esc, norm, byId, category, productUrl, categoryUrl, discount, search,
-    cart, fav, recent, orders,
+    cart, fav, recent, orders, ready,
     boughtTogether, sameCategory, forCart,
     icon, stars, stockInfo, badges, priceBlock, favButton, addButton, card, miniCard, categoryTiles, carousel, recentRail, freeShippingBar, toast,
     init

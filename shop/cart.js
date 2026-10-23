@@ -1,13 +1,35 @@
 // shop/cart.js – strona koszyka
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => window.AGW.ready.then(() => {
   const A = window.AGW;
   const { fmt, esc, byId, productUrl, icon } = A;
   const root = document.getElementById('cart');
+  const shopify = window.AGW_SHOP?.enabled;
 
   const steps = (n) => `<ol class="steps">
-      ${['Koszyk', 'Dostawa i płatność', 'Potwierdzenie'].map((s, i) => `<li class="${i + 1 === n ? 'is-active' : ''}${i + 1 < n ? ' is-done' : ''}"><span>${i + 1}</span>${s}</li>`).join('')}
+      ${['Koszyk', shopify ? 'Kasa i płatność' : 'Dostawa i płatność', 'Potwierdzenie'].map((s, i) => `<li class="${i + 1 === n ? 'is-active' : ''}${i + 1 < n ? ' is-done' : ''}"><span>${i + 1}</span>${s}</li>`).join('')}
     </ol>`;
+
+  const NOTE_KEY = 'agw_cart_note';
+  const note = () => {
+    try { return localStorage.getItem(NOTE_KEY) || ''; } catch (e) { return ''; }
+  };
+
+  const goToCheckout = async (btn) => {
+    const err = root.querySelector('[data-checkout-error]');
+    btn.disabled = true;
+    btn.textContent = 'Łączymy z kasą…';
+    err.hidden = true;
+    try {
+      location.href = await window.AGW_SHOP.checkout(A.cart.items(), note());
+    } catch (e) {
+      console.error('[AgroWil] Kasa Shopify:', e);
+      err.innerHTML = `Nie udało się przejść do kasy (${esc(e.message)}). Spróbuj ponownie albo zamów telefonicznie: <a href="tel:+48666605101">666 605 101</a>.`;
+      err.hidden = false;
+      btn.disabled = false;
+      btn.innerHTML = `${icon.check} Przejdź do kasy`;
+    }
+  };
 
   const render = () => {
     const items = A.cart.items();
@@ -56,11 +78,17 @@ document.addEventListener('DOMContentLoaded', () => {
           ${A.freeShippingBar(total)}
           <dl>
             <dt>Wartość produktów</dt><dd>${fmt(total)}</dd>
-            <dt>Dostawa</dt><dd>${total >= A.FREE_SHIPPING_FROM ? 'Gratis' : `od ${fmt(0)} (odbiór) / ${fmt(14.99)}`}</dd>
+            <dt>Dostawa</dt><dd>${total >= A.FREE_SHIPPING_FROM ? 'Gratis' : (shopify ? 'wybierzesz w kasie' : `od ${fmt(0)} (odbiór) / ${fmt(14.99)}`)}</dd>
           </dl>
           <div class="summary__total"><span>Do zapłaty</span><b>${fmt(total)}</b></div>
+          ${shopify ? `
+          <label class="summary__note">Uwagi do zamówienia (np. numer VIN lub model maszyny – sprawdzimy dopasowanie)
+            <textarea rows="3" data-note>${esc(note())}</textarea></label>
+          <button type="button" class="btn btn--primary btn--block" data-checkout>${icon.check} Przejdź do kasy</button>
+          <p class="form-error" data-checkout-error hidden></p>
+          <p class="fhint">Dostawę i płatność (BLIK, przelew online, karta) wybierzesz w bezpiecznej kasie Shopify.</p>` : `
           <a class="btn btn--primary btn--block" href="zamowienie.html">Przejdź do dostawy i płatności</a>
-          <p class="fhint">Koszt dostawy wybierzesz w następnym kroku.</p>
+          <p class="fhint">Koszt dostawy wybierzesz w następnym kroku.</p>`}
         </aside>
       </div>
 
@@ -68,7 +96,17 @@ document.addEventListener('DOMContentLoaded', () => {
       ${A.recentRail(items.map((i) => i.id))}`;
   };
 
+  root.addEventListener('input', (e) => {
+    if (!e.target.matches('[data-note]')) return;
+    try { localStorage.setItem(NOTE_KEY, e.target.value); } catch (err) { /* tryb prywatny */ }
+  });
+
   root.addEventListener('click', (e) => {
+    const go = e.target.closest('[data-checkout]');
+    if (go) {
+      goToCheckout(go);
+      return;
+    }
     const row = e.target.closest('.cart-row');
     if (!row) return;
     const id = row.dataset.id;
@@ -90,4 +128,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('agw:cart', render);
   render();
-});
+}));

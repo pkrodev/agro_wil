@@ -1,6 +1,6 @@
 // shop/home.js – strona główna: produkt w promocji, kategorie, karuzele
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => window.AGW.ready.then(() => {
   const A = window.AGW;
   const { PRODUCTS, fmt, esc, productUrl } = A;
 
@@ -38,4 +38,4 @@ document.addEventListener('DOMContentLoaded', () => {
   const recentHtml = A.recentRail();
   if (recent && recentHtml) recent.innerHTML = recentHtml;
   else recent?.closest('.band')?.remove();
-});
+}));

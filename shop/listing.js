@@ -1,6 +1,6 @@
 // shop/listing.js – lista produktów: kategorie, wyszukiwanie, filtry, sortowanie, paginacja
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => window.AGW.ready.then(() => {
   const { PRODUCTS, CATEGORIES, esc, search, category, categoryUrl, fav, card, carousel, recentRail } = window.AGW;
   const MODELS = window.AGW_MODELS;
   const PER_PAGE = 12;
@@ -274,4 +274,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // przewiń do sekcji z linku w stopce (#ostatnio-ogladane) po wyrenderowaniu
   if (location.hash) document.querySelector(location.hash)?.scrollIntoView();
-});
+}));

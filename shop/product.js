@@ -1,6 +1,6 @@
 // shop/product.js – karta produktu
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => window.AGW.ready.then(() => {
   const A = window.AGW;
   const { fmt, esc, byId, category, categoryUrl, productUrl, icon } = A;
   const root = document.getElementById('product');
@@ -206,4 +206,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     update();
   }
-});
+}));
