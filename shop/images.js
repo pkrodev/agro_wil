@@ -1,5 +1,5 @@
 // shop/images.js – ilustracje produktów (SVG) do czasu wgrania prawdziwych zdjęć.
-// Jeśli produkt ma pole `photo` (ścieżka do pliku), sklep pokaże zdjęcie zamiast ilustracji.
+// Jeśli produkt ma zdjęcie w shop/photos.js, sklep pokaże zdjęcie zamiast ilustracji.
 
 (() => {
   const STEEL = '#b9c0c4';
@@ -194,8 +194,9 @@
   };
 
   window.AGW_IMG = (p, variant = 'main') => {
-    if (p.photo) {
-      return `<img src="${p.photo}" alt="${p.name.replace(/"/g, '&quot;')}" loading="lazy"/>`;
+    const photo = (window.AGW_PHOTOS || {})[p.id];
+    if (photo) {
+      return `<img src="${photo.src}" alt="${p.name.replace(/"/g, '&quot;')}" loading="lazy"${variant === 'zoom' ? ' class="img-zoom"' : ''}/>`;
     }
     const body = (draw[p.img.t] || draw.filter)(p);
     const zoom = variant === 'zoom' ? 'transform="translate(200 200) scale(1.55) translate(-200 -200)"' : '';

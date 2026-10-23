@@ -1,174 +1,93 @@
-<!-- index.html – HYBRYDA: header z propozycji 2 + body z propozycji 1 -->
+<!-- index.html – strona główna: sklep z częściami + informacje o usługach AgroWil -->
 <!DOCTYPE html>
-
 <html lang="pl">
 <head>
 <meta charset="utf-8"/>
-<title>AgroWil – części John Deere, FJDynamics, węże hydrauliczne, koszenie kukurydzy</title>
+<title>AgroWil – sklep z częściami John Deere, nawigacje FJDynamics, węże hydrauliczne</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="AgroWil z Popowa Północ – części i materiały eksploatacyjne do maszyn John Deere, nawigacje FJDynamics, zakuwanie węży hydraulicznych, usługowe koszenie kukurydzy." name="description"/>
+<meta content="AgroWil z Popowa Północ – sklep internetowy z częściami i materiałami eksploatacyjnymi do maszyn John Deere, nawigacje FJDynamics, zakuwanie węży hydraulicznych, usługowe koszenie kukurydzy." name="description"/>
 <link href="logo_agrowil.png" rel="icon" type="image/png"/>
 <link href="style.css" rel="stylesheet"/>
+<link href="shop/shop.css" rel="stylesheet"/>
 </head>
-<body>
-<!-- HEADER + HERO (z propozycji 2) -->
-<header class="hero-header" id="start">
-<div class="hero-overlay"></div>
-<div class="hero-nav">
-<div class="nav-inner">
-<a class="nav-logo" href="#start">
-<img alt="AgroWil – logo" src="logo_agrowil.png"/>
-</a>
-<button aria-label="Otwórz menu" class="nav-burger">
-<span></span>
-<span></span>
-<span></span>
-</button>
-<nav class="nav-links">
-<ul>
-<li><a href="#oferta">Oferta</a></li>
-<li><a href="#fjd">FJDynamics</a></li>
-<li><a href="#weze">Węże</a></li>
-<li><a href="#kukurydza">Kukurydza</a></li>
-<li><a href="#onas">O nas</a></li>
-<li><a href="#kontakt">Kontakt</a></li>
-<li><a class="nav-shop" href="sklep.html">Sklep</a></li>
-</ul>
-</nav>
-<div class="nav-phone">
-<span>Telefon:</span>
-<a href="tel:+48666605101">666 605 101</a>
-</div>
-</div>
-</div>
-<div class="hero-content">
-<div class="hero-text">
-<h1>AgroWil – wsparcie dla Twoich maszyn John Deere</h1>
-<p>Dobieramy części, zakładamy nawigacje FJDynamics, zakuwamy węże i kosimy kukurydzę. Rozmawiamy po ludzku – o tym, czego naprawdę potrzebujesz w gospodarstwie.</p>
-<p>Jesteśmy z Popowa Północ (gm. Nasielsk) i współpracujemy z gospodarstwami oraz firmami usługowymi z okolicy.</p>
-<ul class="hero-list">
-<li>części i materiały eksploatacyjne do maszyn John Deere,</li>
-<li>montaż i konfiguracja nawigacji rolniczych FJDynamics,</li>
-<li>zakuwanie węży hydraulicznych „pod maszynę”,</li>
-<li>usługowe koszenie kukurydzy w ustalonych terminach.</li>
-</ul>
-<div class="hero-actions">
-<a class="btn btn-main" href="tel:+48666605101">Zadzwoń w sprawie części lub nawigacji</a>
-<a class="btn btn-ghost" href="sklep.html">Sklep z częściami</a>
-</div>
-<p class="hero-note">W sezonie najszybciej złapiesz nas telefonicznie – często jesteśmy w terenie.</p>
-</div>
-<div class="hero-side">
-<div class="hero-card">
-<img alt="Ciągnik John Deere w pracy" src="jd1.jpg"/>
-<div class="hero-card-text">
-<h2>Maszyny mają pracować, nie stać</h2>
-<p>Dlatego stawiamy na szybkie decyzje, proste rozwiązania i konkretną rozmowę.</p>
-</div>
-</div>
-<div class="hero-pills">
-<span>John Deere</span>
-<span>FJDynamics</span>
-<span>Węże hydrauliczne</span>
-<span>Koszenie kukurydzy</span>
-</div>
-</div>
-</div>
-</header>
+<body class="shop home">
+<div data-shop-header></div>
 <main>
-<!-- Proste boczne menu na desktopie -->
-<nav aria-label="Nawigacja po sekcjach strony" class="side-nav">
-<a href="#oferta">Oferta</a>
-<a href="#fjd">FJD</a>
-<a href="#weze">Węże</a>
-<a href="#kukurydza">Kukurydza</a>
-<a href="#onas">O nas</a>
-<a href="#kontakt">Kontakt</a>
-<a href="sklep.html">Sklep</a>
-</nav>
-<!-- OFERTA (z propozycji 1) -->
-<section class="section section-offer" id="oferta">
-<div class="container">
-<header class="section-header">
-<h2>Oferta AgroWil</h2>
-<p>Stawiamy na proste zasady: konkretna rozmowa, dopasowane rozwiązania i sprzęt przygotowany do pracy wtedy, gdy masz okno pogodowe.</p>
-</header>
-<div class="cards-grid">
-<article class="card">
-<div class="card-image">
-<img alt="Ciągnik John Deere w gospodarstwie" loading="lazy" src="jd3.jpg"/>
+<!-- SKLEP – baner -->
+<section class="wrap home-hero">
+<div class="home-hero__main">
+<span class="eyebrow">Sklep i serwis rolniczy · Popowo Północ</span>
+<h1>Części do maszyn John Deere z wysyłką w 24 h</h1>
+<p>Filtry, oleje, paski, łożyska, części żniwne i hydraulika. Nie wiesz, co pasuje? Dobierzemy część po numerze VIN – wystarczy telefon.</p>
+<div class="home-hero__actions">
+<a class="btn btn--yellow" href="sklep.html">Przejdź do sklepu</a>
+<a class="btn btn--glass" href="tel:+48666605101">Zadzwoń: 666 605 101</a>
 </div>
-<div class="card-body">
-<h3>Części i materiały do John Deere</h3>
-<p>Specjalizujemy się w marce John Deere – znamy typowe usterki i różnice między seriami i rocznikami. Dzięki temu szybciej namierzamy właściwą część.</p>
-<p>Dobierzemy elementy po numerze, opisie problemu albo zdjęciu, tak aby ciągnik, kombajn czy maszyna towarzysząca jak najszybciej wróciły do pracy.</p>
-<ul>
-<li>dobór części po modelu, numerze VIN lub numerze katalogowym,</li>
-<li>podpowiedzi „na telefon” – mówisz, co się dzieje, a my szukamy rozwiązania,</li>
-<li>krótsze przestoje maszyn w sezonie,</li>
-<li>filtry, oleje, paski, łożyska i inne materiały eksploatacyjne John Deere.</li>
-</ul>
+<div class="home-hero__tags">
+<span>Popularne:</span>
+<a href="sklep.html?q=RE504836">RE504836</a>
+<a href="sklep.html?q=Plus-50">Plus-50 II</a>
+<a href="sklep.html?kat=zniwne">Nożyki i palce</a>
+<a href="sklep.html?kat=hydraulika">Węże</a>
+<a href="sklep.html?kat=filtry">Filtry</a>
 </div>
-</article>
-<article class="card">
-<div class="card-image">
-<img alt="Nawigacja FJDynamics w ciągniku John Deere" loading="lazy" src="fjdynamics.png"/>
 </div>
-<div class="card-body">
-<h3>Nawigacje rolnicze FJDynamics</h3>
-<p>Oferujemy dobór, montaż i konfigurację systemów FJDynamics do siewu, nawożenia, uprawy i oprysku. Pracujemy w realnych gospodarstwach – wiemy, co działa w praktyce.</p>
-<p>Od prostego prowadzenia po pełne autosterowanie i dokumentację zabiegów – dobieramy zestaw do wielkości gospodarstwa i budżetu.</p>
-<ul>
-<li>mniej nakładek i omijaków przy pracy w polu,</li>
-<li>prostsza praca operatora – czytelny terminal i intuicyjne menu,</li>
-<li>wsparcie przy ustawieniach i pierwszych pracach na polu,</li>
-<li>możliwość rozbudowy o ISOBUS i FieldFusion/FMS.</li>
-</ul>
-</div>
-</article>
-<article class="card">
-<div class="card-image">
-<img alt="Węże hydrauliczne do maszyn rolniczych" loading="lazy" src="weze1.png"/>
-</div>
-<div class="card-body">
-<h3>Zakuwanie węży hydraulicznych</h3>
-<p>Zużyty lub pęknięty wąż potrafi zatrzymać całą maszynę. Zakuwamy nowe węże na miejsce starego, dopasowując średnicę, oplot i końcówki.</p>
-<p>Pracujemy z wężami do maszyn rolniczych, budowlanych i przemysłowych. W sezonie wiele tematów ogarniamy „od ręki”.</p>
-<ul>
-<li>zakuwanie węży w różnych średnicach i klasach ciśnienia,</li>
-<li>końcówki proste i kolankowe, gwinty metryczne i calowe,</li>
-<li>najlepiej przyjechać z przykładowym starym wężem,</li>
-<li>krótsze przestoje dzięki szybkiemu wykonaniu nowego przewodu.</li>
-</ul>
-</div>
-</article>
-<article class="card">
-<div class="card-image">
-<img alt="Koszenie kukurydzy kombajnem John Deere" loading="lazy" src="jd_corn2.webp"/>
-</div>
-<div class="card-body">
-<h3>Usługowe koszenie kukurydzy</h3>
-<p>Współpracujemy z gospodarstwami i firmami usługowymi przy zbiorze kukurydzy. Uzgadniamy areały, lokalizacje pól i przewidywane terminy z wyprzedzeniem.</p>
-<p>Bierzemy pod uwagę pogodę i warunki na polu, żeby zebrać kukurydzę w możliwie optymalnym momencie, bez zbędnego czekania.</p>
-<ul>
-<li>ustalanie areałów i położenia pól przed sezonem,</li>
-<li>planowanie kolejności zbioru z uwzględnieniem pogody,</li>
-<li>sprawny, przygotowany przed sezonem sprzęt,</li>
-<li>mniej stresu i bardziej przewidywalny przebieg żniw kukurydzianych.</li>
-</ul>
-</div>
-</article>
-</div>
+<div class="home-hero__side">
+<a class="promo-tile" data-home-promo href="sklep.html?promo=1"></a>
+<a class="promo-tile promo-tile--service" href="#weze">
+<img alt="Zakuwanie węża hydraulicznego" src="zakuwanie1.png"/>
+<span class="promo-tile__txt"><small>Usługa na miejscu</small><b>Węże hydrauliczne zakuwamy od ręki</b><em>Przywieź stary wąż – zrobimy nowy →</em></span>
+</a>
 </div>
 </section>
-<!-- SKLEP – zapowiedź -->
-<section class="section section-shop" id="sklep">
-<div class="container shop-teaser">
-<div>
-<h2>Sklep internetowy AgroWil</h2>
-<p>Filtry, oleje, paski, łożyska, części żniwne i hydraulika do maszyn John Deere – zamówisz online, a my wyślemy w 24 h. Nie wiesz, co pasuje? Zadzwoń z numerem VIN.</p>
+
+<section class="wrap home-perks" aria-label="Dlaczego AgroWil">
+<div><b>Wysyłka w 24 h</b><span>produkty dostępne od ręki</span></div>
+<div><b>Dobór po VIN</b><span>sprawdzimy, czy część pasuje</span></div>
+<div><b>Odbiór osobisty</b><span>Popowo Północ, gm. Nasielsk</span></div>
+<div><b>Darmowa dostawa</b><span>od 500 zł · 14 dni na zwrot</span></div>
+</section>
+
+<section class="wrap home-block">
+<div class="home-block__head"><h2>Kategorie produktów</h2><a href="sklep.html">Wszystkie produkty →</a></div>
+<div data-home-cats></div>
+</section>
+
+<div class="wrap" data-home-rails></div>
+
+<!-- USŁUGI -->
+<section class="section section-services" id="oferta">
+<div class="container">
+<header class="section-header">
+<h2>Nie tylko sklep – usługi AgroWil</h2>
+<p>Stawiamy na proste zasady: konkretna rozmowa, dopasowane rozwiązania i sprzęt przygotowany do pracy wtedy, gdy masz okno pogodowe.</p>
+</header>
+<div class="services">
+<a class="service" href="sklep.html">
+<img alt="Ciągnik John Deere w gospodarstwie" loading="lazy" src="jd3.jpg"/>
+<span class="service__body"><b>Części i materiały do John Deere</b>
+<span>Znamy typowe usterki i różnice między seriami. Dobierzemy część po modelu, numerze VIN, numerze katalogowym albo zdjęciu – także spoza katalogu sklepu.</span>
+<em>Przejdź do sklepu →</em></span>
+</a>
+<a class="service" href="#fjd">
+<img alt="Nawigacja FJDynamics w ciągniku John Deere" loading="lazy" src="fjdynamics.png"/>
+<span class="service__body"><b>Nawigacje rolnicze FJDynamics</b>
+<span>Dobór, montaż i konfiguracja autosterowania do siewu, nawożenia, uprawy i oprysku – z możliwością rozbudowy o ISOBUS i FMS.</span>
+<em>Zobacz zestawy →</em></span>
+</a>
+<a class="service" href="#weze">
+<img alt="Węże hydrauliczne do maszyn rolniczych" loading="lazy" src="weze1.png"/>
+<span class="service__body"><b>Zakuwanie węży hydraulicznych</b>
+<span>Nowy wąż na miejsce starego – dopasowana średnica, oplot i końcówki. W sezonie wiele węży robimy „od ręki”.</span>
+<em>Jak to wygląda →</em></span>
+</a>
+<a class="service" href="#kukurydza">
+<img alt="Koszenie kukurydzy kombajnem John Deere" loading="lazy" src="jd_corn2.webp"/>
+<span class="service__body"><b>Usługowe koszenie kukurydzy</b>
+<span>Uzgadniamy areały, lokalizacje pól i terminy z wyprzedzeniem, a w sezonie dopasowujemy kolejność zbioru do pogody.</span>
+<em>Szczegóły współpracy →</em></span>
+</a>
 </div>
-<a class="btn btn-primary" href="sklep.html">Przejdź do sklepu</a>
 </div>
 </section>
 <!-- FJDYNAMICS (z propozycji 1) -->
@@ -192,6 +111,7 @@
 </div>
 </div>
 <div class="fjd-summary">
+<a class="btn btn--yellow fjd-summary__cta" href="tel:+48666605101">Zapytaj o dobór nawigacji – 666 605 101</a>
 <h3>Najważniejsze korzyści z FJDynamics w gospodarstwie</h3>
 <ul>
 <li>mniej nakładek i omijaków, czyli niższe koszty paliwa i środków,</li>
@@ -227,6 +147,10 @@
 <li>różne maszyny przemysłowe z układem hydraulicznym.</li>
 </ul>
 <p>Dzięki prawidłowo dobranemu wężowi skracasz przestój maszyny i zmniejszasz ryzyko awarii w trakcie sezonu.</p>
+<div class="info-cta">
+<a class="btn btn--primary" href="sklep.html?kat=hydraulika">Gotowe węże i szybkozłącza w sklepie</a>
+<a class="btn btn--ghost" href="tel:+48666605101">Wąż na wymiar – zadzwoń</a>
+</div>
 </div>
 <div class="hoses-gallery">
 <img alt="Różne typy węży hydraulicznych" loading="lazy" src="weze1.png"/>
@@ -345,13 +269,14 @@
 </div>
 </div>
 </section>
+<div class="wrap" data-home-recent></div>
 </main>
-<footer class="site-footer">
-<div class="container footer-inner">
-<p>© <span id="year"></span> AgroWil, Popowo Północ (gm. Nasielsk). Wszystkie prawa zastrzeżone.</p>
-<p class="footer-note">Części John Deere, nawigacje FJDynamics, zakuwanie węży, koszenie kukurydzy – praktycznie i po ludzku.</p>
-</div>
-</footer>
-<script defer="" src="scripts.js"></script>
+<div data-shop-footer="no-perks"></div>
+<script defer src="shop/products.js"></script>
+<script defer src="shop/photos.js"></script>
+<script defer src="shop/images.js"></script>
+<script defer src="shop/shop.js"></script>
+<script defer src="shop/home.js"></script>
+<script defer src="scripts.js"></script>
 </body>
 </html>

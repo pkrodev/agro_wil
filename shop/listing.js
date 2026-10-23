@@ -83,17 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ${s.fav ? '<span>/</span><span>Ulubione</span>' : ''}
     </nav>`;
 
-  const categoryTiles = () => `<div class="cat-tiles">
-      ${CATEGORIES.map((c) => {
-        const items = PRODUCTS.filter((p) => p.category === c.id);
-        const hero = items.slice().sort((a, b) => b.popularity - a.popularity)[0];
-        return `<a class="cat-tile" href="${categoryUrl(c.id)}">
-          <span class="cat-tile__img">${window.AGW_IMG(hero)}</span>
-          <b>${c.name}</b><small>${items.length} produktów</small>
-        </a>`;
-      }).join('')}
-    </div>`;
-
   const sidebar = (s, scoped) => {
     const catCounts = (s.q || s.fav ? scoped : PRODUCTS);
     const countModel = (m) => applyFilters(scoped, { ...s, models: [m] }).length;
@@ -190,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <p>Filtry, oleje, paski, łożyska i części żniwne – wysyłamy w 24 h, a jeśli nie wiesz, co pasuje, dobierzemy część po numerze VIN.</p>
         </div>
         <a class="btn btn--primary" href="sklep.html?promo=1">Zobacz promocje</a>
-      </section>${categoryTiles()}` : `<header class="list-head"><h1>${title(s)}</h1>${cat ? `<p>${cat.desc}</p>` : ''}</header>`}
+      </section>${window.AGW.categoryTiles()}` : `<header class="list-head"><h1>${title(s)}</h1>${cat ? `<p>${cat.desc}</p>` : ''}</header>`}
 
       <div class="list-layout">
         ${sidebar(s, scoped)}

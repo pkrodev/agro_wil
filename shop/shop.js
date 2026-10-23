@@ -259,6 +259,17 @@ window.AGW = (() => {
       </div>
     </article>`;
 
+  const categoryTiles = () => `<div class="cat-tiles">
+      ${CATEGORIES.map((c) => {
+        const items = PRODUCTS.filter((p) => p.category === c.id);
+        const hero = items.slice().sort((a, b) => b.popularity - a.popularity)[0];
+        return `<a class="cat-tile" href="${categoryUrl(c.id)}">
+          <span class="cat-tile__img">${window.AGW_IMG(hero)}</span>
+          <b>${c.name}</b><small>${items.length} produktów</small>
+        </a>`;
+      }).join('')}
+    </div>`;
+
   // Karuzela produktów z przewijaniem i strzałkami
   const carousel = (title, products, opts = {}) => {
     if (!products.length) return '';
@@ -298,7 +309,7 @@ window.AGW = (() => {
       <header class="shop-header">
         <div class="wrap shop-header__row">
           <button type="button" class="icon-btn shop-burger" aria-label="Kategorie" aria-expanded="false">${icon.menu}</button>
-          <a class="shop-logo" href="sklep.html" aria-label="Sklep AgroWil – strona główna sklepu">
+          <a class="shop-logo" href="index.html" aria-label="AgroWil – strona główna">
             <img src="logo_agrowil.png" alt="AgroWil"/>
             <span>sklep</span>
           </a>
@@ -317,7 +328,10 @@ window.AGW = (() => {
             <a href="sklep.html" class="${!activeCat && location.pathname.endsWith('sklep.html') && !params.get('q') && !params.get('fav') ? 'is-active' : ''}">Wszystkie</a>
             ${CATEGORIES.map((c) => `<a href="${categoryUrl(c.id)}" class="${activeCat === c.id ? 'is-active' : ''}">${c.name}</a>`).join('')}
             <a href="sklep.html?promo=1" class="cats__promo">Promocje</a>
-            <a href="index.html" class="cats__home">← Strona firmy</a>
+            <span class="cats__sep" aria-hidden="true"></span>
+            <a href="index.html#oferta" class="cats__info">Usługi</a>
+            <a href="index.html#fjd" class="cats__info">Nawigacje FJD</a>
+            <a href="index.html#kontakt" class="cats__info">Kontakt</a>
           </div>
         </nav>
       </header>`;
@@ -337,14 +351,14 @@ window.AGW = (() => {
     const host = document.querySelector('[data-shop-footer]');
     if (!host) return;
     host.outerHTML = `
-      <section class="perks">
+      ${host.dataset.shopFooter === 'no-perks' ? '' : `<section class="perks">
         <div class="wrap perks__grid">
           <div><b>Oryginalne części</b><span>John Deere i sprawdzone zamienniki</span></div>
           <div><b>Wysyłka w 24 h</b><span>dla produktów dostępnych od ręki</span></div>
           <div><b>Dobór po VIN</b><span>zadzwoń – sprawdzimy, czy pasuje</span></div>
           <div><b>14 dni na zwrot</b><span>bez podawania przyczyny</span></div>
         </div>
-      </section>
+      </section>`}
       <footer class="shop-footer">
         <div class="wrap shop-footer__grid">
           <div>
@@ -578,7 +592,7 @@ window.AGW = (() => {
     fmt, esc, norm, byId, category, productUrl, categoryUrl, discount, search,
     cart, fav, recent, orders,
     boughtTogether, sameCategory, forCart,
-    icon, stars, stockInfo, badges, priceBlock, favButton, addButton, card, miniCard, carousel, recentRail, freeShippingBar, toast,
+    icon, stars, stockInfo, badges, priceBlock, favButton, addButton, card, miniCard, categoryTiles, carousel, recentRail, freeShippingBar, toast,
     init
   };
 })();

@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const recentBefore = A.recentRail([p.id]);
   A.recent.push(p.id);
 
+  const credit = (window.AGW_PHOTOS || {})[p.id]?.credit;
   const together = A.boughtTogether(p.id, 2);
   const bundle = [p, ...together];
 
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <button type="button" class="is-active" data-thumb="main" aria-label="Widok ogólny">${window.AGW_IMG(p)}</button>
           <button type="button" data-thumb="zoom" aria-label="Zbliżenie">${window.AGW_IMG(p, 'zoom')}</button>
         </div>
+        ${credit ? `<p class="pd__credit">Zdjęcie poglądowe: ${esc(credit.author)}, <a href="${credit.source}" target="_blank" rel="noopener">${esc(credit.license)}</a>, Wikimedia Commons</p>` : ''}
       </div>
 
       <div class="pd__info">
